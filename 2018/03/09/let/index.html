@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 
 
-  <html class="light page-archives201803">
+  <html class="light page-post">
 
 
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2018/3 | qucx-juan</title>
+  <title>let | qucx-juan</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,16 +15,17 @@
     <meta name="keywords" content="前端" />
   
 
-  <meta name="description" content="first site">
-<meta property="og:type" content="website">
-<meta property="og:title" content="qucx-juan">
-<meta property="og:url" content="http://qucxjuan.com/archives/2018/03/index.html">
+  <meta name="description" content="1、变量声明提升    （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量    （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="let">
+<meta property="og:url" content="http://qucxjuan.com/2018/03/09/let/index.html">
 <meta property="og:site_name" content="qucx-juan">
-<meta property="og:description" content="first site">
+<meta property="og:description" content="1、变量声明提升    （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量    （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-03-09T09:45:25.085Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="qucx-juan">
-<meta name="twitter:description" content="first site">
+<meta name="twitter:title" content="let">
+<meta name="twitter:description" content="1、变量声明提升    （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量    （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用">
 
   
 
@@ -87,17 +88,8 @@
     <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
   
 
-  <div class="content content-archive">
-  <div class="page-header">
-
-  
-    <div class="breadcrumb">
-      <div class="location">博客</div>
-      <i class="icon-location"></i>
-    </div>
-  
-
-  
+  <div class="post-header CENTER">
+   
   <div class="toolbox">
     <a class="toolbox-entry" href="/">
       <span class="toolbox-entry-text">盒子</span>
@@ -187,59 +179,85 @@
   </div>
 
 
-
-  <div class="box-blog-info">
-    <a class="avatar" href="/">
-      <img src="/images/avatar.jpg" alt="" />
-    </a>
-    <div class="info">
-      <h3 class="name" style="font-family: calligraffittiregular">
-        qucx-juan
-      </h3>
-      <div class="slogan">
-        lets coding...
-      </div>
-    </div>
-  </div>
-
 </div>
 
 
-  <div class="post-list-box archive-body">
-    <ul class="list-post">  <li class="item-year item item-title item-title-3">
-    <a href="/archives/2018" class="text-year">
-      2018
-      <i class="icon-gou"></i>
+
+
+<div class="content content-post CENTER">
+   <article id="post-let" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">let</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.03.09</span>
+      </span>
+
       
-    </a>
-  </li>
-<li class="item-post item">
-  <span class="post-date">03-09</span>
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>juan</span>
+        </span>
+      
 
-  
-  <a class="post-title" href="/2018/03/09/let/">let</a>
-
-
-</li>
-<li class="item-post item">
-  <span class="post-date">03-07</span>
-
-  
-  <a class="post-title" href="/2018/03/07/js中的按位运算/">js中的按位运算</a>
+      
 
 
-</li>
-</ul>
-  </div>
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://qucxjj.github.io/2018/03/09/let/#disqus_thread"></a>
+        </span>
+      
 
-  <div class="archive-footer">
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
     
+      <p>1、变量声明提升<br>    （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量<br>    （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用了这个变量名，块级作用域都会发现并抛出错误<br>    （3）var的变量声明提升会将变量初始化为undefined，let没有初始化，所以有暂时死区的概念。其实从表现上来讲，说let是没有变量声明提升也有一定道理，因为变量没有在顶部初始化，所以也不能说变量已经声明过了，反而用绑定到了当前的块级作用域内这种说法更令人信服。<br>2、for循环中的let<br>    for循环每次进入函数体{…}中，都是进入了新的子作用域中，每个子作用域相互独立，新的子作用域引用（实际是变量复制）父作用域的循环值变量，同时可以修改变量的值且更新父作用域变量，实际表现就和真正引用了父作用域变量一样。反之，父作用域无法访问此复制变量，所以父作用域中变量的改变不会对子作用域中的变量有什么影响。但是如果子作用域中重新声明了此变量名，新的变量就绑定到了子作用域中，变成了子作用域的内部变量，覆盖了父作用域的循环值变量，子作用域对新声明的变量的修改都在子作用域范围内，父作用域同样无法访问此变量。</p>
 
+    
   </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/03/07/js中的按位运算/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="hide pull-right" href="/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
 </div>
 
 
-
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
 
 
 
@@ -338,6 +356,46 @@
 </div>
 
 
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://qucxjuan.com/2018/03/09/let/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
 
   
 
