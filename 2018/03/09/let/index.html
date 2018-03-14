@@ -15,17 +15,17 @@
     <meta name="keywords" content="前端" />
   
 
-  <meta name="description" content="1、变量声明提升    （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量    （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用">
+  <meta name="description" content="1、变量声明提升 （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量 （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用了这个变量名">
 <meta property="og:type" content="article">
 <meta property="og:title" content="let">
 <meta property="og:url" content="http://qucxjuan.com/2018/03/09/let/index.html">
 <meta property="og:site_name" content="qucx-juan">
-<meta property="og:description" content="1、变量声明提升    （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量    （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用">
+<meta property="og:description" content="1、变量声明提升 （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量 （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用了这个变量名">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-09T09:45:25.085Z">
+<meta property="og:updated_time" content="2018-03-14T06:20:28.613Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="let">
-<meta name="twitter:description" content="1、变量声明提升    （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量    （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用">
+<meta name="twitter:description" content="1、变量声明提升 （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量 （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用了这个变量名">
 
   
 
@@ -138,6 +138,11 @@
 </div>
 
 
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、变量声明提升"><span class="toc-text">1、变量声明提升</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、for循环中的let"><span class="toc-text">2、for循环中的let</span></a></li></ol>
+  </div>
+
 
 
 <div class="content content-post CENTER">
@@ -181,7 +186,11 @@
 
   <div class="article-content">
     
-      <p>1、变量声明提升<br>    （1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量<br>    （2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用了这个变量名，块级作用域都会发现并抛出错误<br>    （3）var的变量声明提升会将变量初始化为undefined，let没有初始化，所以有暂时死区的概念。其实从表现上来讲，说let是没有变量声明提升也有一定道理，因为变量没有在顶部初始化，所以也不能说变量已经声明过了，反而用绑定到了当前的块级作用域内这种说法更令人信服。<br>2、for循环中的let<br>    for循环每次进入函数体{…}中，都是进入了新的子作用域中，每个子作用域相互独立，新的子作用域引用（实际是变量复制）父作用域的循环值变量，同时可以修改变量的值且更新父作用域变量，实际表现就和真正引用了父作用域变量一样。反之，父作用域无法访问此复制变量，所以父作用域中变量的改变不会对子作用域中的变量有什么影响。但是如果子作用域中重新声明了此变量名，新的变量就绑定到了子作用域中，变成了子作用域的内部变量，覆盖了父作用域的循环值变量，子作用域对新声明的变量的修改都在子作用域范围内，父作用域同样无法访问此变量。</p>
+      <h4 id="1、变量声明提升"><a href="#1、变量声明提升" class="headerlink" title="1、变量声明提升"></a>1、变量声明提升</h4><ul>
+<li>（1）所有的变量声明（ var, let, const, function, function*, class）都存在变量声明提升，我们这里只谈论let变量</li>
+<li>（2）let被提升到了块级作用域的顶部，表现（或者说换种说法）就是每个let定义的变量都绑定到了当前的块级作用域内。通俗地讲，因为块级作用域在顶部就为每个let定义的变量留好了位置，所以只要在let变量声明前引用了这个变量名，块级作用域都会发现并抛出错误</li>
+<li>（3）var的变量声明提升会将变量初始化为undefined，let没有初始化，所以有暂时死区的概念。其实从表现上来讲，说let是没有变量声明提升也有一定道理，因为变量没有在顶部初始化，所以也不能说变量已经声明过了，反而用绑定到了当前的块级作用域内这种说法更令人信服。<h4 id="2、for循环中的let"><a href="#2、for循环中的let" class="headerlink" title="2、for循环中的let"></a>2、for循环中的let</h4>for循环每次进入函数体{…}中，都是进入了新的子作用域中，每个子作用域相互独立，新的子作用域引用（实际是变量复制）父作用域的循环值变量，同时可以修改变量的值且更新父作用域变量，实际表现就和真正引用了父作用域变量一样。反之，父作用域无法访问此复制变量，所以父作用域中变量的改变不会对子作用域中的变量有什么影响。但是如果子作用域中重新声明了此变量名，新的变量就绑定到了子作用域中，变成了子作用域的内部变量，覆盖了父作用域的循环值变量，子作用域对新声明的变量的修改都在子作用域范围内，父作用域同样无法访问此变量。</li>
+</ul>
 
     
   </div>

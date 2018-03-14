@@ -15,17 +15,17 @@
     <meta name="keywords" content="前端" />
   
 
-  <meta name="description" content="1.按位与一个数和1进行按位与可以用来判断一个数是奇数还是偶数，且速度较快。奇数的二进制码最后一位肯定是1，而1只有最后一位为1，按位&amp;amp;操作之后，结果肯定只有最后一位数为1。而偶数的二进制表示的最后一位数是0，和1进行按位&amp;amp;操作，结果所有位数都为0。2.按位或一个数和0进行按位或可以用来对该数进行向下取整。浮点数不支持位运算，所以会先把浮点数转换成整数在进行位运算，就好像是对浮点数">
+  <meta name="description" content="1.按位与一个数和1进行按位与可以用来判断一个数是奇数还是偶数，且速度较快。奇数的二进制码最后一位肯定是1，而1只有最后一位为1，按位&amp;amp;操作之后，结果肯定只有最后一位数为1。而偶数的二进制表示的最后一位数是0，和1进行按位&amp;amp;操作，结果所有位数都为0。 2.按位或一个数和0进行按位或可以用来对该数进行向下取整。浮点数不支持位运算，所以会先把浮点数转换成整数在进行位运算，就好像是对浮点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="js中的按位运算">
 <meta property="og:url" content="http://qucxjuan.com/2018/03/07/js中的按位运算/index.html">
 <meta property="og:site_name" content="qucx-juan">
-<meta property="og:description" content="1.按位与一个数和1进行按位与可以用来判断一个数是奇数还是偶数，且速度较快。奇数的二进制码最后一位肯定是1，而1只有最后一位为1，按位&amp;amp;操作之后，结果肯定只有最后一位数为1。而偶数的二进制表示的最后一位数是0，和1进行按位&amp;amp;操作，结果所有位数都为0。2.按位或一个数和0进行按位或可以用来对该数进行向下取整。浮点数不支持位运算，所以会先把浮点数转换成整数在进行位运算，就好像是对浮点数">
+<meta property="og:description" content="1.按位与一个数和1进行按位与可以用来判断一个数是奇数还是偶数，且速度较快。奇数的二进制码最后一位肯定是1，而1只有最后一位为1，按位&amp;amp;操作之后，结果肯定只有最后一位数为1。而偶数的二进制表示的最后一位数是0，和1进行按位&amp;amp;操作，结果所有位数都为0。 2.按位或一个数和0进行按位或可以用来对该数进行向下取整。浮点数不支持位运算，所以会先把浮点数转换成整数在进行位运算，就好像是对浮点">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-07T11:55:20.574Z">
+<meta property="og:updated_time" content="2018-03-14T06:18:35.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="js中的按位运算">
-<meta name="twitter:description" content="1.按位与一个数和1进行按位与可以用来判断一个数是奇数还是偶数，且速度较快。奇数的二进制码最后一位肯定是1，而1只有最后一位为1，按位&amp;amp;操作之后，结果肯定只有最后一位数为1。而偶数的二进制表示的最后一位数是0，和1进行按位&amp;amp;操作，结果所有位数都为0。2.按位或一个数和0进行按位或可以用来对该数进行向下取整。浮点数不支持位运算，所以会先把浮点数转换成整数在进行位运算，就好像是对浮点数">
+<meta name="twitter:description" content="1.按位与一个数和1进行按位与可以用来判断一个数是奇数还是偶数，且速度较快。奇数的二进制码最后一位肯定是1，而1只有最后一位为1，按位&amp;amp;操作之后，结果肯定只有最后一位数为1。而偶数的二进制表示的最后一位数是0，和1进行按位&amp;amp;操作，结果所有位数都为0。 2.按位或一个数和0进行按位或可以用来对该数进行向下取整。浮点数不支持位运算，所以会先把浮点数转换成整数在进行位运算，就好像是对浮点">
 
   
 
@@ -138,6 +138,11 @@
 </div>
 
 
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-按位与"><span class="toc-text">1.按位与</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-按位或"><span class="toc-text">2.按位或</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-按位非"><span class="toc-text">3.按位非</span></a></li></ol>
+  </div>
+
 
 
 <div class="content content-post CENTER">
@@ -181,7 +186,9 @@
 
   <div class="article-content">
     
-      <p>1.按位与<br>一个数和1进行按位与可以用来判断一个数是奇数还是偶数，且速度较快。奇数的二进制码最后一位肯定是1，而1只有最后一位为1，按位&amp;操作之后，结果肯定只有最后一位数为1。而偶数的二进制表示的最后一位数是0，和1进行按位&amp;操作，结果所有位数都为0。<br>2.按位或<br>一个数和0进行按位或可以用来对该数进行向下取整。浮点数不支持位运算，所以会先把浮点数转换成整数在进行位运算，就好像是对浮点数进行向下取整。<br>3.按位非<br>求一个数的二进制码的反码</p>
+      <h4 id="1-按位与"><a href="#1-按位与" class="headerlink" title="1.按位与"></a>1.按位与</h4><p>一个数和1进行按位与可以用来判断一个数是奇数还是偶数，且速度较快。奇数的二进制码最后一位肯定是1，而1只有最后一位为1，按位&amp;操作之后，结果肯定只有最后一位数为1。而偶数的二进制表示的最后一位数是0，和1进行按位&amp;操作，结果所有位数都为0。</p>
+<h4 id="2-按位或"><a href="#2-按位或" class="headerlink" title="2.按位或"></a>2.按位或</h4><p>一个数和0进行按位或可以用来对该数进行向下取整。浮点数不支持位运算，所以会先把浮点数转换成整数在进行位运算，就好像是对浮点数进行向下取整。</p>
+<h4 id="3-按位非"><a href="#3-按位非" class="headerlink" title="3.按位非"></a>3.按位非</h4><p>求一个数的二进制码的反码</p>
 
     
   </div>

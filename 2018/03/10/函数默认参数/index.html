@@ -15,17 +15,17 @@
     <meta name="keywords" content="前端" />
   
 
-  <meta name="description" content="// 写法一function m1({x = 0, y = 0} = {}) {  return [x, y];} // 写法二function m2({x, y} = { x: 0, y: 0 }) {  return [x, y];}上面两种写法都对函数的参数设定了默认值，区别是写法一函数参数的默认值是空对象，但是设置了对象解构赋值的默认值；写法二函数参数的默认值是一个有具体属性的对象，但是没">
+  <meta name="description" content="123456789// 写法一function m1(&amp;#123;x = 0, y = 0&amp;#125; = &amp;#123;&amp;#125;) &amp;#123;  return [x, y];&amp;#125;// 写法二function m2(&amp;#123;x, y&amp;#125; = &amp;#123; x: 0, y: 0 &amp;#125;) &amp;#123;  return [x, y];&amp;#125; 上面两种写法都对函数的参">
 <meta property="og:type" content="article">
 <meta property="og:title" content="函数默认值与结构赋值结合使用注意点">
 <meta property="og:url" content="http://qucxjuan.com/2018/03/10/函数默认参数/index.html">
 <meta property="og:site_name" content="qucx-juan">
-<meta property="og:description" content="// 写法一function m1({x = 0, y = 0} = {}) {  return [x, y];} // 写法二function m2({x, y} = { x: 0, y: 0 }) {  return [x, y];}上面两种写法都对函数的参数设定了默认值，区别是写法一函数参数的默认值是空对象，但是设置了对象解构赋值的默认值；写法二函数参数的默认值是一个有具体属性的对象，但是没">
+<meta property="og:description" content="123456789// 写法一function m1(&amp;#123;x = 0, y = 0&amp;#125; = &amp;#123;&amp;#125;) &amp;#123;  return [x, y];&amp;#125;// 写法二function m2(&amp;#123;x, y&amp;#125; = &amp;#123; x: 0, y: 0 &amp;#125;) &amp;#123;  return [x, y];&amp;#125; 上面两种写法都对函数的参">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-03-10T09:04:00.395Z">
+<meta property="og:updated_time" content="2018-03-14T06:21:25.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="函数默认值与结构赋值结合使用注意点">
-<meta name="twitter:description" content="// 写法一function m1({x = 0, y = 0} = {}) {  return [x, y];} // 写法二function m2({x, y} = { x: 0, y: 0 }) {  return [x, y];}上面两种写法都对函数的参数设定了默认值，区别是写法一函数参数的默认值是空对象，但是设置了对象解构赋值的默认值；写法二函数参数的默认值是一个有具体属性的对象，但是没">
+<meta name="twitter:description" content="123456789// 写法一function m1(&amp;#123;x = 0, y = 0&amp;#125; = &amp;#123;&amp;#125;) &amp;#123;  return [x, y];&amp;#125;// 写法二function m2(&amp;#123;x, y&amp;#125; = &amp;#123; x: 0, y: 0 &amp;#125;) &amp;#123;  return [x, y];&amp;#125; 上面两种写法都对函数的参">
 
   
 
@@ -181,14 +181,9 @@
 
   <div class="article-content">
     
-      <p>// 写法一<br>function m1({x = 0, y = 0} = {}) {<br>  return [x, y];<br>}</p>
-<p>// 写法二<br>function m2({x, y} = { x: 0, y: 0 }) {<br>  return [x, y];<br>}<br>上面两种写法都对函数的参数设定了默认值，区别是<br>写法一函数参数的默认值是空对象，但是设置了对象解构赋值的默认值；<br>写法二函数参数的默认值是一个有具体属性的对象，但是没有设置对象解构赋值的默认值。</p>
-<p>// 函数没有参数的情况<br>m1() // [0, 0]<br>m2() // [0, 0]</p>
-<p>// x 和 y 都有值的情况<br>m1({x: 3, y: 8}) // [3, 8]<br>m2({x: 3, y: 8}) // [3, 8]</p>
-<p>// x 有值，y 无值的情况<br>m1({x: 3}) // [3, 0]<br>m2({x: 3}) // [3, undefined]</p>
-<p>// x 和 y 都无值的情况<br>m1({}) // [0, 0];<br>m2({}) // [undefined, undefined]</p>
-<p>m1({z: 3}) // [0, 0]<br>m2({z: 3}) // [undefined, undefined]</p>
-
+      <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 写法一</span><br><span class="line">function m1(&#123;x = 0, y = 0&#125; = &#123;&#125;) &#123;</span><br><span class="line">  return [x, y];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 写法二</span><br><span class="line">function m2(&#123;x, y&#125; = &#123; x: 0, y: 0 &#125;) &#123;</span><br><span class="line">  return [x, y];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面两种写法都对函数的参数设定了默认值，区别是<br>写法一函数参数的默认值是空对象，但是设置了对象解构赋值的默认值；<br>写法二函数参数的默认值是一个有具体属性的对象，但是没有设置对象解构赋值的默认值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 函数没有参数的情况</span><br><span class="line">m1() // [0, 0]</span><br><span class="line">m2() // [0, 0]</span><br><span class="line"></span><br><span class="line">// x 和 y 都有值的情况</span><br><span class="line">m1(&#123;x: 3, y: 8&#125;) // [3, 8]</span><br><span class="line">m2(&#123;x: 3, y: 8&#125;) // [3, 8]</span><br><span class="line"></span><br><span class="line">// x 有值，y 无值的情况</span><br><span class="line">m1(&#123;x: 3&#125;) // [3, 0]</span><br><span class="line">m2(&#123;x: 3&#125;) // [3, undefined]</span><br><span class="line"></span><br><span class="line">// x 和 y 都无值的情况</span><br><span class="line">m1(&#123;&#125;) // [0, 0];</span><br><span class="line">m2(&#123;&#125;) // [undefined, undefined]</span><br><span class="line"></span><br><span class="line">m1(&#123;z: 3&#125;) // [0, 0]</span><br><span class="line">m2(&#123;z: 3&#125;) // [undefined, undefined]</span><br></pre></td></tr></table></figure>
     
   </div>
 
