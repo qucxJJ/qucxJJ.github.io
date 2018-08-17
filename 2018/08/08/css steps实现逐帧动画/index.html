@@ -23,7 +23,7 @@
 <meta property="og:description" content="介绍animation-timing-function属性的取值除了ease、贝赛尔曲线外还有一个steps(n, start/end)函数，该函数接收两个参数:  第一个参数n为指定的间隔数，即把动画分为n步阶段性展示； 第二个参数有两个值：指定在每个间隔的起点或是终点发生阶跃变化，默认为end注意第一个参数n为指定的间隔数，即把动画分为n步阶段性展示，并不是keyframes写的变化次数。当k">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://qucxjuan.com/2018/08/08/css%20steps实现逐帧动画/resource/animation-step-args.png">
-<meta property="og:updated_time" content="2018-08-17T10:51:53.044Z">
+<meta property="og:updated_time" content="2018-08-17T10:54:35.491Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css animation steps实现逐帧动画">
 <meta name="twitter:description" content="介绍animation-timing-function属性的取值除了ease、贝赛尔曲线外还有一个steps(n, start/end)函数，该函数接收两个参数:  第一个参数n为指定的间隔数，即把动画分为n步阶段性展示； 第二个参数有两个值：指定在每个间隔的起点或是终点发生阶跃变化，默认为end注意第一个参数n为指定的间隔数，即把动画分为n步阶段性展示，并不是keyframes写的变化次数。当k">
@@ -195,7 +195,7 @@
 </li>
 </ul>
 <p>此刻设置steps(5，start)那么会发现5张图会出现帧动画的效果，因为steps中的5把 0% – 100%的规则，内部分成5个等分,实际内部会执行这样一个关键帧效果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@keyframes run &#123;</span><br><span class="line">  0% &#123;background-position-x: 0;&#125;</span><br><span class="line">  25% &#123;background-position-x: -100px;&#125;</span><br><span class="line">  50% &#123;background-position-x:-200px;&#125;</span><br><span class="line">  75%&#123;background-position-x: -300px;&#125;</span><br><span class="line">  100%&#123;background-position-x: -400px;&#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
-<p> 将这个上面的规则修改一下，加入一个50%的状态：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> @keyframes run &#123;</span><br><span class="line">  0% &#123;background: red&#125;</span><br><span class="line">  50%&#123;background: yellow&#125;</span><br><span class="line">  100% &#123;background: blue&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 将这个上面的规则修改一下，加入一个50%的状态：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> @keyframes run &#123;</span><br><span class="line">  0% &#123;background-position-x: 0;&#125;</span><br><span class="line">  50% &#123;background-position-x:-200px;&#125;</span><br><span class="line">  100%&#123;background-position-x: -400px;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p> 此刻再设置steps(5，start)，效果就会乱套。</p>
 <ul>
 <li>steps的设置都是针对两个关键帧之间的，而非是整个keyframes，即第一个参数指的是每个规则区间的变化次数，换句话说也是 0-50之间变化5次，50-100之间 变化5次。</li>
@@ -215,10 +215,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/03/13/mvvm实现/">
+    <a class="show pull-left" href="/2018/08/08/h5全屏API/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/08/08/h5全屏API/">
+    <a class="show pull-right" href="/2018/08/16/拖拽/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
