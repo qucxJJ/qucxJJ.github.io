@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>css animation steps实现逐帧动画 | qucx-juan</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="前端" />
+  
+
+  <meta name="description" content="介绍animation-timing-function属性的取值除了ease、贝赛尔曲线外还有一个steps(n, start/end)函数，该函数接收两个参数:  第一个参数n为指定的间隔数，即把动画分为n步阶段性展示； 第二个参数有两个值：指定在每个间隔的起点或是终点发生阶跃变化，默认为end注意第一个参数n为指定的间隔数，即把动画分为n步阶段性展示，并不是keyframes写的变化次数。当k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css animation steps实现逐帧动画">
+<meta property="og:url" content="http://qucxjuan.com/2018/08/08/css steps实现逐帧动画/index.html">
+<meta property="og:site_name" content="qucx-juan">
+<meta property="og:description" content="介绍animation-timing-function属性的取值除了ease、贝赛尔曲线外还有一个steps(n, start/end)函数，该函数接收两个参数:  第一个参数n为指定的间隔数，即把动画分为n步阶段性展示； 第二个参数有两个值：指定在每个间隔的起点或是终点发生阶跃变化，默认为end注意第一个参数n为指定的间隔数，即把动画分为n步阶段性展示，并不是keyframes写的变化次数。当k">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://qucxjuan.com/2018/08/08/css%20steps实现逐帧动画/resource/animation-step-args.png">
+<meta property="og:updated_time" content="2018-08-17T10:51:53.044Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="css animation steps实现逐帧动画">
+<meta name="twitter:description" content="介绍animation-timing-function属性的取值除了ease、贝赛尔曲线外还有一个steps(n, start/end)函数，该函数接收两个参数:  第一个参数n为指定的间隔数，即把动画分为n步阶段性展示； 第二个参数有两个值：指定在每个间隔的起点或是终点发生阶跃变化，默认为end注意第一个参数n为指定的间隔数，即把动画分为n步阶段性展示，并不是keyframes写的变化次数。当k">
+<meta name="twitter:image" content="http://qucxjuan.com/2018/08/08/css%20steps实现逐帧动画/resource/animation-step-args.png">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#介绍"><span class="toc-text">介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意"><span class="toc-text">注意</span></a>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-css steps实现逐帧动画" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">css animation steps实现逐帧动画</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.08.08</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>juan</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://qucxjj.github.io/2018/08/08/css steps实现逐帧动画/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>animation-timing-function属性的取值除了ease、贝赛尔曲线外还有一个steps(n, start/end)函数，该函数接收两个参数:</p>
+<ul>
+<li>第一个参数n为指定的间隔数，即把动画分为n步阶段性展示；</li>
+<li>第二个参数有两个值：指定在每个间隔的起点或是终点发生阶跃变化，默认为end<br><img src="./resource/animation-step-args.png" alt="avatar"><h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2>第一个参数n为指定的间隔数，即把动画分为n步阶段性展示，并不是keyframes写的变化次数。<br>当keyframe只有两个规则的时候，例如：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@keyframes run &#123;</span><br><span class="line">  0% &#123;</span><br><span class="line">    background-position: 0 0;</span><br><span class="line">  &#125;</span><br><span class="line">  100% &#123;</span><br><span class="line">    background-position: -400px 0;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>此刻设置steps(5，start)那么会发现5张图会出现帧动画的效果，因为steps中的5把 0% – 100%的规则，内部分成5个等分,实际内部会执行这样一个关键帧效果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@keyframes run &#123;</span><br><span class="line">  0% &#123;background-position-x: 0;&#125;</span><br><span class="line">  25% &#123;background-position-x: -100px;&#125;</span><br><span class="line">  50% &#123;background-position-x:-200px;&#125;</span><br><span class="line">  75%&#123;background-position-x: -300px;&#125;</span><br><span class="line">  100%&#123;background-position-x: -400px;&#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
+<p> 将这个上面的规则修改一下，加入一个50%的状态：<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> @keyframes run &#123;</span><br><span class="line">  0% &#123;background: red&#125;</span><br><span class="line">  50%&#123;background: yellow&#125;</span><br><span class="line">  100% &#123;background: blue&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p> 此刻再设置steps(5，start)，效果就会乱套。</p>
+<ul>
+<li>steps的设置都是针对两个关键帧之间的，而非是整个keyframes，即第一个参数指的是每个规则区间的变化次数，换句话说也是 0-50之间变化5次，50-100之间 变化5次。</li>
+</ul>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/03/13/mvvm实现/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/08/08/h5全屏API/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://qucxjuan.com/2018/08/08/css steps实现逐帧动画/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
