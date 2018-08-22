@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+
+  <html class="light page-post">
+
+
+<head>
+  <meta charset="utf-8">
+  
+  <title>display none与图片加载 | qucx-juan</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+    <meta name="keywords" content="前端" />
+  
+
+  <meta name="description" content="1、设置了display: none的元素，其背景和后代img元素都会产生请求，后代元素的背景不会产生请求，这些图片都不会被渲染。123456&amp;lt;div class=&amp;quot;outer&amp;quot; style=&amp;quot;display: none; background: url(pic1.png);&amp;quot;&amp;gt;  &amp;lt;div class=&amp;quot;inner&amp;quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="display none与图片加载">
+<meta property="og:url" content="http://qucxjuan.com/2018/08/22/display none与图片加载/index.html">
+<meta property="og:site_name" content="qucx-juan">
+<meta property="og:description" content="1、设置了display: none的元素，其背景和后代img元素都会产生请求，后代元素的背景不会产生请求，这些图片都不会被渲染。123456&amp;lt;div class=&amp;quot;outer&amp;quot; style=&amp;quot;display: none; background: url(pic1.png);&amp;quot;&amp;gt;  &amp;lt;div class=&amp;quot;inner&amp;quot;">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-08-22T11:13:51.823Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="display none与图片加载">
+<meta name="twitter:description" content="1、设置了display: none的元素，其背景和后代img元素都会产生请求，后代元素的背景不会产生请求，这些图片都不会被渲染。123456&amp;lt;div class=&amp;quot;outer&amp;quot; style=&amp;quot;display: none; background: url(pic1.png);&amp;quot;&amp;gt;  &amp;lt;div class=&amp;quot;inner&amp;quot;">
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  <link href="/css/styles.css?v=c114cbe6" rel="stylesheet">
+
+
+  
+    <link rel="stylesheet" href="/css/personal-style.css">
+  
+
+  
+
+  
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?57e94d016e201fba3603a8a2b0263af0";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+	(function(){
+	    var bp = document.createElement('script');
+	    var curProtocol = window.location.protocol.split(':')[0];
+	    if (curProtocol === 'https') {
+	        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+	    }
+	    else {
+	        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+	    }
+	    var s = document.getElementsByTagName("script")[0];
+	    s.parentNode.insertBefore(bp, s);
+	})();
+  </script>
+
+
+
+  
+    <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+
+  
+    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  
+</head>
+
+<body>
+
+
+  
+    <span id="toolbox-mobile" class="toolbox-mobile">盒子</span>
+  
+
+  <div class="post-header CENTER">
+   
+  <div class="toolbox">
+    <a class="toolbox-entry" href="/">
+      <span class="toolbox-entry-text">盒子</span>
+      <i class="icon-angle-down"></i>
+      <i class="icon-home"></i>
+    </a>
+    <ul class="list-toolbox">
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/archives/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            博客
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/category/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            分类
+          </a>
+        </li>
+      
+        <li class="item-toolbox">
+          <a
+            class="CIRCLE"
+            href="/about/"
+            rel="noopener noreferrer"
+            target="_self"
+            >
+            关于
+          </a>
+        </li>
+      
+    </ul>
+  </div>
+
+
+</div>
+
+
+  <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、设置了display-none的元素，其背景和后代img元素都会产生请求，后代元素的背景不会产生请求，这些图片都不会被渲染。"><span class="toc-text">1、设置了display: none的元素，其背景和后代img元素都会产生请求，后代元素的背景不会产生请求，这些图片都不会被渲染。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、重复图片、重复背景只会发送一次请求。"><span class="toc-text">2、重复图片、重复背景只会发送一次请求。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、不存在的元素设置背景不会发送请求"><span class="toc-text">3、不存在的元素设置背景不会发送请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、设置了visibility-hidden的元素，其背景、后代img元素、后代元素的背景都会产生请求，且会渲染。"><span class="toc-text">4、设置了visibility: hidden的元素，其背景、后代img元素、后代元素的背景都会产生请求，且会渲染。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、多重背景的情况下，css3的多重背景方式，背景图片都会发送请求，非css3的多重背景方式，只有最后一个背景图片会发送请求。"><span class="toc-text">5、多重背景的情况下，css3的多重背景方式，背景图片都会发送请求，非css3的多重背景方式，只有最后一个背景图片会发送请求。</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、伪类背景图片只在触发伪类时候才会请求加载（因此建议请求雪碧图—即一堆小图汇总到一张大图上，这样不会有UI跳跃感）"><span class="toc-text">6、伪类背景图片只在触发伪类时候才会请求加载（因此建议请求雪碧图—即一堆小图汇总到一张大图上，这样不会有UI跳跃感）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7、已经请求过的相同图片不会重复请求"><span class="toc-text">7、已经请求过的相同图片不会重复请求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8、js中的图片，如下，会进行加载"><span class="toc-text">8、js中的图片，如下，会进行加载</span></a></li></ol>
+  </div>
+
+
+
+<div class="content content-post CENTER">
+   <article id="post-display none与图片加载" class="article article-type-post" itemprop="blogPost">
+  <header class="article-header">
+    <h1 class="post-title">display none与图片加载</h1>
+
+    <div class="article-meta">
+      <span>
+        <i class="icon-calendar"></i>
+        <span>2018.08.22</span>
+      </span>
+
+      
+        <span class="article-author">
+          <i class="icon-user"></i>
+          <span>juan</span>
+        </span>
+      
+
+      
+
+
+      
+        <span>
+          <i class="icon-comment"></i>
+          <a href="https://qucxjj.github.io/2018/08/22/display none与图片加载/#disqus_thread"></a>
+        </span>
+      
+
+      
+      <i class="fa fa-eye"></i> 
+        <span id="busuanzi_container_page_pv">
+           &nbsp热度 <span id="busuanzi_value_page_pv">
+           <i class="fa fa-spinner fa-spin"></i></span>℃
+        </span>
+      
+      
+    </div>
+  </header>
+
+  <div class="article-content">
+    
+      <h3 id="1、设置了display-none的元素，其背景和后代img元素都会产生请求，后代元素的背景不会产生请求，这些图片都不会被渲染。"><a href="#1、设置了display-none的元素，其背景和后代img元素都会产生请求，后代元素的背景不会产生请求，这些图片都不会被渲染。" class="headerlink" title="1、设置了display: none的元素，其背景和后代img元素都会产生请求，后代元素的背景不会产生请求，这些图片都不会被渲染。"></a>1、设置了display: none的元素，其背景和后代img元素都会产生请求，后代元素的背景不会产生请求，这些图片都不会被渲染。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;outer&quot; style=&quot;display: none; background: url(pic1.png);&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;inner&quot; style=&quot;background: url(pic2.png)&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;pic3.png&quot; alt=&quot;&quot;&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">// pic1和pic3发送请求了  pic2没有请求</span><br></pre></td></tr></table></figure>
+<h3 id="2、重复图片、重复背景只会发送一次请求。"><a href="#2、重复图片、重复背景只会发送一次请求。" class="headerlink" title="2、重复图片、重复背景只会发送一次请求。"></a>2、重复图片、重复背景只会发送一次请求。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">// 重复图片</span><br><span class="line">&lt;img src=&quot;pic1.png&quot; alt=&quot;&quot;&gt;</span><br><span class="line">&lt;img src=&quot;pic1.png&quot; alt=&quot;&quot;&gt;</span><br><span class="line">// 重复背景</span><br><span class="line">.test1 &#123; background: url(pic1.png)) &#125;   </span><br><span class="line">.test2 &#123; background: url(pic1.png) &#125;  </span><br><span class="line">// 发送一次请求</span><br></pre></td></tr></table></figure>
+<h3 id="3、不存在的元素设置背景不会发送请求"><a href="#3、不存在的元素设置背景不会发送请求" class="headerlink" title="3、不存在的元素设置背景不会发送请求"></a>3、不存在的元素设置背景不会发送请求</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 页面中没有类名为test1的元素</span><br><span class="line">.test1 &#123; background: url(pic1.png) &#125;</span><br><span class="line">// 不会发送请求</span><br></pre></td></tr></table></figure>
+<h3 id="4、设置了visibility-hidden的元素，其背景、后代img元素、后代元素的背景都会产生请求，且会渲染。"><a href="#4、设置了visibility-hidden的元素，其背景、后代img元素、后代元素的背景都会产生请求，且会渲染。" class="headerlink" title="4、设置了visibility: hidden的元素，其背景、后代img元素、后代元素的背景都会产生请求，且会渲染。"></a>4、设置了visibility: hidden的元素，其背景、后代img元素、后代元素的背景都会产生请求，且会渲染。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;outer&quot; style=&quot;visibility: hidden; background: url(pic1.png);&quot;&gt;</span><br><span class="line">  &lt;div class=&quot;inner&quot; style=&quot;background: url(pic2.png)&quot;&gt;</span><br><span class="line">    &lt;img src=&quot;pic3.png&quot; alt=&quot;&quot;&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">// pic1、pic2和pic3都发送了请求</span><br></pre></td></tr></table></figure>
+<h3 id="5、多重背景的情况下，css3的多重背景方式，背景图片都会发送请求，非css3的多重背景方式，只有最后一个背景图片会发送请求。"><a href="#5、多重背景的情况下，css3的多重背景方式，背景图片都会发送请求，非css3的多重背景方式，只有最后一个背景图片会发送请求。" class="headerlink" title="5、多重背景的情况下，css3的多重背景方式，背景图片都会发送请求，非css3的多重背景方式，只有最后一个背景图片会发送请求。"></a>5、多重背景的情况下，css3的多重背景方式，背景图片都会发送请求，非css3的多重背景方式，只有最后一个背景图片会发送请求。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// 非css3方式   只有pic2发送请求</span><br><span class="line">.test1 &#123; background: url(pic1.png); &#125;   </span><br><span class="line">.test1 &#123; background: url(pic2.png); &#125;</span><br><span class="line">// css3方式   两个都发送请求</span><br><span class="line">.test1 &#123; background-image:url(pic1.png),url(pic2.png);</span><br></pre></td></tr></table></figure>
+<h3 id="6、伪类背景图片只在触发伪类时候才会请求加载（因此建议请求雪碧图—即一堆小图汇总到一张大图上，这样不会有UI跳跃感）"><a href="#6、伪类背景图片只在触发伪类时候才会请求加载（因此建议请求雪碧图—即一堆小图汇总到一张大图上，这样不会有UI跳跃感）" class="headerlink" title="6、伪类背景图片只在触发伪类时候才会请求加载（因此建议请求雪碧图—即一堆小图汇总到一张大图上，这样不会有UI跳跃感）"></a>6、伪类背景图片只在触发伪类时候才会请求加载（因此建议请求雪碧图—即一堆小图汇总到一张大图上，这样不会有UI跳跃感）</h3><h3 id="7、已经请求过的相同图片不会重复请求"><a href="#7、已经请求过的相同图片不会重复请求" class="headerlink" title="7、已经请求过的相同图片不会重复请求"></a>7、已经请求过的相同图片不会重复请求</h3><h3 id="8、js中的图片，如下，会进行加载"><a href="#8、js中的图片，如下，会进行加载" class="headerlink" title="8、js中的图片，如下，会进行加载"></a>8、js中的图片，如下，会进行加载</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var img = new Image();</span><br><span class="line">img.src = &quot;./pic1.png&quot;;</span><br></pre></td></tr></table></figure>
+
+    
+  </div>
+
+  
+      <div class="git"></div>
+  
+
+</article>
+
+
+   
+
+   
+  <div class="box-prev-next clearfix">
+    <a class="show pull-left" href="/2018/08/17/css steps实现逐帧动画/">
+        <i class="icon icon-angle-left"></i>
+    </a>
+    <a class="show pull-right" href="/2018/08/22/display none和visibility hidden的区别/">
+        <i class="icon icon-angle-right"></i>
+    </a>
+  </div>
+
+
+
+
+</div>
+
+
+  <a id="backTop" class="back-top">
+    <i class="icon-angle-up"></i>
+  </a>
+
+
+
+
+  <div class="modal" id="modal">
+  <span id="cover" class="cover hide"></span>
+  <div id="modal-dialog" class="modal-dialog hide-dialog">
+    <div class="modal-header">
+      <span id="close" class="btn-close">关闭</span>
+    </div>
+    <hr>
+    <div class="modal-body">
+      <ul class="list-toolbox">
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/archives/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              博客
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/category/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              分类
+            </a>
+          </li>
+        
+          <li class="item-toolbox">
+            <a
+              class="CIRCLE"
+              href="/about/"
+              rel="noopener noreferrer"
+              target="_self"
+              >
+              关于
+            </a>
+          </li>
+        
+      </ul>
+
+    </div>
+  </div>
+</div>
+
+
+
+  
+      <div class="fexo-comments comments-post">
+    
+  <section class="disqus-comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+  </section>
+
+  <script>
+    var disqus_shortname = 'forsigner';
+    
+    var disqus_url = 'http://qucxjuan.com/2018/08/22/display none与图片加载/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+  <script id="dsq-count-scr" src="//forsigner.disqus.com/count.js" async></script>
+
+
+
+    
+    
+
+    
+    
+
+    
+
+    
+    
+
+  </div>
+
+  
+
+  <script type="text/javascript">
+  function loadScript(url, callback) {
+    var script = document.createElement('script')
+    script.type = 'text/javascript';
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == 'loaded' ||
+          script.readyState == 'complete') {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
+    script.src = url;
+    document.getElementsByTagName('head')[0].appendChild(script);
+  }
+
+  window.onload = function() {
+    loadScript('/js/bundle.js?235683', function() {
+      // load success
+    });
+  }
+</script>
+
+</body>
+</html>
