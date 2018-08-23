@@ -7,7 +7,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>display none和visibility hidden的区别 | qucx-juan</title>
+  <title>对象转换为原始值的机制 | qucx-juan</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,17 +15,17 @@
     <meta name="keywords" content="前端" />
   
 
-  <meta name="description" content="display: none和visibility: hidden的区别 1、是否占据空间 display: none 不占据空间 visibility: hidden 占据空间   2、是否引起回流和重绘 display: none 隐藏显示会引起重绘 visibility: hidden 隐藏显示不引起回流重绘   3、是否株连 display: none 的元素，其后代元素都会被株连，一旦一个">
+  <meta name="description" content="object -&amp;gt; boolean 所有的对象都转换为true，包括包装对象，如new Boolean(false)将转换为trueobject -&amp;gt; string 若对象具有toString方法，则调用这个方法，若该方法返回一个原始值，则将这个原始值转换为string并返回 若对象没有toString方法或者该方法不返回一个原始值，则调用valueOf方法，若该方法返回原始值，则将这">
 <meta property="og:type" content="article">
-<meta property="og:title" content="display none和visibility hidden的区别">
-<meta property="og:url" content="http://qucxjuan.com/2018/08/22/display none和visibility hidden的区别/index.html">
+<meta property="og:title" content="对象转换为原始值的机制">
+<meta property="og:url" content="http://qucxjuan.com/2018/08/23/对象转换为原始值的机制/index.html">
 <meta property="og:site_name" content="qucx-juan">
-<meta property="og:description" content="display: none和visibility: hidden的区别 1、是否占据空间 display: none 不占据空间 visibility: hidden 占据空间   2、是否引起回流和重绘 display: none 隐藏显示会引起重绘 visibility: hidden 隐藏显示不引起回流重绘   3、是否株连 display: none 的元素，其后代元素都会被株连，一旦一个">
+<meta property="og:description" content="object -&amp;gt; boolean 所有的对象都转换为true，包括包装对象，如new Boolean(false)将转换为trueobject -&amp;gt; string 若对象具有toString方法，则调用这个方法，若该方法返回一个原始值，则将这个原始值转换为string并返回 若对象没有toString方法或者该方法不返回一个原始值，则调用valueOf方法，若该方法返回原始值，则将这">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-08-22T11:23:40.956Z">
+<meta property="og:updated_time" content="2018-08-23T07:37:26.442Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="display none和visibility hidden的区别">
-<meta name="twitter:description" content="display: none和visibility: hidden的区别 1、是否占据空间 display: none 不占据空间 visibility: hidden 占据空间   2、是否引起回流和重绘 display: none 隐藏显示会引起重绘 visibility: hidden 隐藏显示不引起回流重绘   3、是否株连 display: none 的元素，其后代元素都会被株连，一旦一个">
+<meta name="twitter:title" content="对象转换为原始值的机制">
+<meta name="twitter:description" content="object -&amp;gt; boolean 所有的对象都转换为true，包括包装对象，如new Boolean(false)将转换为trueobject -&amp;gt; string 若对象具有toString方法，则调用这个方法，若该方法返回一个原始值，则将这个原始值转换为string并返回 若对象没有toString方法或者该方法不返回一个原始值，则调用valueOf方法，若该方法返回原始值，则将这">
 
   
 
@@ -140,20 +140,20 @@
 
   <div id="toc" class="toc-article">
     <strong class="toc-title">文章目录</strong>
-    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#display-none和visibility-hidden的区别"><span class="toc-text">display: none和visibility: hidden的区别</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#object-gt-boolean"><span class="toc-text">object -&gt; boolean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#object-gt-string"><span class="toc-text">object -&gt; string</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#object-gt-number"><span class="toc-text">object -&gt; number</span></a></li></ol>
   </div>
 
 
 
 <div class="content content-post CENTER">
-   <article id="post-display none和visibility hidden的区别" class="article article-type-post" itemprop="blogPost">
+   <article id="post-对象转换为原始值的机制" class="article article-type-post" itemprop="blogPost">
   <header class="article-header">
-    <h1 class="post-title">display none和visibility hidden的区别</h1>
+    <h1 class="post-title">对象转换为原始值的机制</h1>
 
     <div class="article-meta">
       <span>
         <i class="icon-calendar"></i>
-        <span>2018.08.22</span>
+        <span>2018.08.23</span>
       </span>
 
       
@@ -169,7 +169,7 @@
       
         <span>
           <i class="icon-comment"></i>
-          <a href="https://qucxjj.github.io/2018/08/22/display none和visibility hidden的区别/#disqus_thread"></a>
+          <a href="https://qucxjj.github.io/2018/08/23/对象转换为原始值的机制/#disqus_thread"></a>
         </span>
       
 
@@ -186,22 +186,14 @@
 
   <div class="article-content">
     
-      <h3 id="display-none和visibility-hidden的区别"><a href="#display-none和visibility-hidden的区别" class="headerlink" title="display: none和visibility: hidden的区别"></a>display: none和visibility: hidden的区别</h3><ul>
-<li>1、是否占据空间<ul>
-<li>display: none 不占据空间</li>
-<li>visibility: hidden 占据空间</li>
-</ul>
-</li>
-<li>2、是否引起回流和重绘<ul>
-<li>display: none 隐藏显示会引起重绘</li>
-<li>visibility: hidden 隐藏显示不引起回流重绘</li>
-</ul>
-</li>
-<li>3、是否株连<ul>
-<li>display: none 的元素，其后代元素都会被株连，一旦一个节点设置了display: none， 它和它的后代元素都全部不可见且不占有空间</li>
-<li>visibility: hidden 的元素，其后代元素也全部不可见，但是。。。如果某个后代元素设置了visibility: visible 则这个元素会显示出来</li>
-</ul>
-</li>
+      <h3 id="object-gt-boolean"><a href="#object-gt-boolean" class="headerlink" title="object -&gt; boolean"></a>object -&gt; boolean</h3><ul>
+<li>所有的对象都转换为true，包括包装对象，如new Boolean(false)将转换为true<h3 id="object-gt-string"><a href="#object-gt-string" class="headerlink" title="object -&gt; string"></a>object -&gt; string</h3></li>
+<li>若对象具有toString方法，则调用这个方法，若该方法返回一个原始值，则将这个原始值转换为string并返回</li>
+<li>若对象没有toString方法或者该方法不返回一个原始值，则调用valueOf方法，若该方法返回原始值，则将这个原始值转化为string并返回</li>
+<li>否则，抛出类型错误异常<h3 id="object-gt-number"><a href="#object-gt-number" class="headerlink" title="object -&gt; number"></a>object -&gt; number</h3></li>
+<li>若对象有valueOf方法，则调用这个方法，若返回一个原始值，则将这个原始值转换为数字并返回</li>
+<li>若对象有toString方法，则调用这个方法，若返回一个原始值，则将这个原始值转换为数字并返回</li>
+<li>否则，抛出类型错误异常</li>
 </ul>
 
     
@@ -218,10 +210,10 @@
 
    
   <div class="box-prev-next clearfix">
-    <a class="show pull-left" href="/2018/08/22/display none与图片加载/">
+    <a class="show pull-left" href="/2018/08/23/==和===的比较机制/">
         <i class="icon icon-angle-left"></i>
     </a>
-    <a class="show pull-right" href="/2018/08/23/==和===的比较机制/">
+    <a class="hide pull-right" href="/">
         <i class="icon icon-angle-right"></i>
     </a>
   </div>
@@ -302,7 +294,7 @@
   <script>
     var disqus_shortname = 'forsigner';
     
-    var disqus_url = 'http://qucxjuan.com/2018/08/22/display none和visibility hidden的区别/';
+    var disqus_url = 'http://qucxjuan.com/2018/08/23/对象转换为原始值的机制/';
     
     (function(){
       var dsq = document.createElement('script');
